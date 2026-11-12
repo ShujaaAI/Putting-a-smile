@@ -1,0 +1,6 @@
+{
+  "name": "Putting a Smile on Them Foundation",
+  "description": "Putting smiles where pain once lived. Supporting vulnerable children, widows, and families in Eldoret and beyond through food programs, education pathways, and community support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
