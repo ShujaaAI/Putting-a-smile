@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 import { FOUNDATION_META } from '../data/foundationData';
-import { Smartphone, Building2, Copy, Check, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import {
+  Smartphone,
+  Building2,
+  Copy,
+  Check,
+  Heart,
+  ArrowRight,
+  CheckCircle2,
+} from 'lucide-react';
 
 interface DonationSectionProps {
   onOpenDonate: (amount?: number) => void;
@@ -24,83 +32,105 @@ export const DonationSection: React.FC<DonationSectionProps> = ({
   const handleCopyBank = () => {
     navigator.clipboard.writeText(FOUNDATION_META.bankAccount);
     setCopiedBank(true);
-    onToast(`Kingdom Bank Account Number ${FOUNDATION_META.bankAccount} copied to clipboard!`);
+    onToast(
+      `Kingdom Bank Account Number ${FOUNDATION_META.bankAccount} copied to clipboard!`
+    );
     setTimeout(() => setCopiedBank(false), 2500);
   };
 
   return (
-    <section id="donate" className="py-20 bg-white border-b border-[#1B3FAF]/10">
+    <section id="donate" className="py-20 bg-white border-b border-[#9ABDE3]/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 section-title-line">
-          <p className="text-[#C81D25] font-bold uppercase tracking-[0.2em] text-xs">
-            Donation Section
-          </p>
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#0E1B4D] mt-3 font-bold">
+        {/* Centered Header */}
+        <div className="text-center max-w-2xl mx-auto mb-12 section-underline">
+          <span className="text-xs font-bold uppercase tracking-widest text-[#C02523]">
+            DIRECT SUPPORT CHANNELS
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1D3C6E] mt-2">
             Support the mission directly.
           </h2>
-          <p className="text-[#0E1B4D]/80 mt-4 text-base leading-relaxed">
-            Use the details below to support feeding programs, education sponsorships, and community center development.
+          <p className="text-sm sm:text-base text-[#4365A1] mt-3 leading-relaxed">
+            Use our verified channels below to fund weekly meals, education sponsorships, and our permanent community center in Eldoret.
           </p>
         </div>
 
-        {/* We Depend On Card */}
-        <div className="max-w-4xl mx-auto mb-10 bg-[#FFF7E9] border border-[#1B3FAF]/15 rounded-2xl p-6 sm:p-7 shadow-xs">
-          <p className="text-xs uppercase tracking-widest text-[#C81D25] font-bold mb-3">
-            We Depend On
-          </p>
-          <ul className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-[#0E1B4D]/85 list-disc pl-5 text-sm font-semibold">
-            <li>Donations</li>
-            <li>Well wishers</li>
-            <li>Friends</li>
-            <li>Organizations</li>
-          </ul>
+        {/* We Depend On Row */}
+        <div className="max-w-4xl mx-auto mb-8 bg-[#FAEB8E]/40 border border-[#E8DB7A] rounded-xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <span className="text-xs font-bold uppercase tracking-wider text-[#1D3C6E]">
+            We Depend On:
+          </span>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs sm:text-sm font-semibold text-[#263864]">
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-[#063BAD]" />
+              Donations
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-[#063BAD]" />
+              Well Wishers
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-[#063BAD]" />
+              Friends
+            </span>
+            <span className="flex items-center gap-1.5">
+              <CheckCircle2 className="w-4 h-4 text-[#063BAD]" />
+              Organizations
+            </span>
+          </div>
         </div>
 
-        {/* 2 Official Payment Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          
+        {/* 2 Official Payment Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {/* M-Pesa Buy Goods Card */}
-          <article className="p-8 rounded-2xl bg-[#FFF7E9] border border-[#1B3FAF]/20 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+          <article className="p-7 sm:p-8 rounded-xl bg-[#F3F1E6]/50 border border-[#9ABDE3]/70 shadow-card hover:shadow-lg transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-serif text-2xl text-[#1B3FAF] font-bold flex items-center gap-2">
-                  <Smartphone className="w-6 h-6 text-[#C81D25]" />
-                  <span>M-Pesa Buy Goods</span>
-                </h3>
-                <span className="text-[11px] font-bold uppercase text-emerald-800 bg-emerald-100 px-2.5 py-1 rounded-md">
-                  Instant
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#063BAD]/10 flex items-center justify-center text-[#063BAD]">
+                    <Smartphone className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#1D3C6E]">
+                    M-Pesa Buy Goods
+                  </h3>
+                </div>
+                <span className="text-xs font-bold text-[#C02523]">
+                  Instant Transfer
                 </span>
               </div>
 
-              <p className="text-xs uppercase tracking-widest text-[#C81D25] font-bold mb-1">
+              <p className="text-[11px] uppercase tracking-widest text-[#6F8CAD] font-bold mb-1">
                 Till Number
               </p>
-              
+
               <div className="flex items-center gap-3">
-                <span className="text-3xl sm:text-4xl font-extrabold text-[#0E1B4D] font-mono tracking-wider">
+                <span className="text-3xl font-extrabold text-[#1D3C6E] font-mono tabular-nums tracking-wider">
                   {FOUNDATION_META.mpesaTill}
                 </span>
                 <button
+                  type="button"
                   onClick={handleCopyTill}
-                  className="p-2 rounded-lg bg-white border border-[#1B3FAF]/20 text-[#1B3FAF] hover:text-[#C81D25] hover:bg-slate-50 transition"
+                  className="p-2 rounded-md bg-white border border-[#9ABDE3] text-[#4365A1] hover:text-[#063BAD] hover:border-[#063BAD] transition cursor-pointer"
                   title="Copy Till Number"
                 >
-                  {copiedTill ? <Check className="w-5 h-5 text-emerald-600" /> : <Copy className="w-5 h-5" />}
+                  {copiedTill ? (
+                    <Check className="w-4 h-4 text-[#063BAD]" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
                 </button>
               </div>
 
-              <p className="text-xs text-[#0E1B4D]/70 mt-3 leading-relaxed">
-                Go to M-Pesa &gt; Lipa na M-Pesa &gt; Buy Goods and Services &gt; Enter Till <strong>{FOUNDATION_META.mpesaTill}</strong>.
+              <p className="text-xs text-[#263864] mt-3 leading-relaxed">
+                Go to M-Pesa → Lipa na M-Pesa → Buy Goods and Services → Enter Till{' '}
+                <strong className="text-[#1D3C6E]">{FOUNDATION_META.mpesaTill}</strong>.
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-[#1B3FAF]/10">
+            <div className="pt-6 mt-6 border-t border-[#9ABDE3]/40">
               <button
                 type="button"
                 onClick={() => onOpenDonate()}
-                className="w-full py-3 rounded-lg bg-[#1B3FAF] hover:bg-[#0E1B4D] text-white text-xs font-bold uppercase tracking-wider transition flex items-center justify-center gap-2 shadow-xs cursor-pointer"
+                className="w-full py-3 rounded-md bg-[#063BAD] hover:bg-[#224EA6] text-white text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 shadow-xs cursor-pointer"
               >
                 <span>Launch M-Pesa Online STK Push</span>
                 <ArrowRight className="w-4 h-4" />
@@ -109,71 +139,71 @@ export const DonationSection: React.FC<DonationSectionProps> = ({
           </article>
 
           {/* Bank Transfer Card */}
-          <article className="p-8 rounded-2xl bg-[#FFF7E9] border border-[#1B3FAF]/20 shadow-xs hover:shadow-md transition-shadow flex flex-col justify-between">
+          <article className="p-7 sm:p-8 rounded-xl bg-[#F3F1E6]/50 border border-[#9ABDE3]/70 shadow-card hover:shadow-lg transition-all flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <h3 className="font-serif text-2xl text-[#1B3FAF] font-bold flex items-center gap-2">
-                  <Building2 className="w-6 h-6 text-[#1B3FAF]" />
-                  <span>Bank Transfer</span>
-                </h3>
-                <span className="text-[11px] font-bold uppercase text-blue-800 bg-blue-100 px-2.5 py-1 rounded-md">
-                  Kenya & Global Wire
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#063BAD]/10 flex items-center justify-center text-[#063BAD]">
+                    <Building2 className="w-5 h-5" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#1D3C6E]">
+                    Bank Transfer
+                  </h3>
+                </div>
+                <span className="text-xs font-bold text-[#4365A1]">
+                  Kenya &amp; Wire
                 </span>
               </div>
 
-              <p className="text-xs uppercase tracking-widest text-[#C81D25] font-bold mb-1">
-                Bank
+              <p className="text-[11px] uppercase tracking-widest text-[#6F8CAD] font-bold mb-0.5">
+                Bank Name
               </p>
-              <p className="text-xl font-bold text-[#0E1B4D] mb-4">
+              <p className="text-lg font-bold text-[#1D3C6E] mb-3">
                 {FOUNDATION_META.bankName}
               </p>
 
-              <p className="text-xs uppercase tracking-widest text-[#C81D25] font-bold mb-1">
+              <p className="text-[11px] uppercase tracking-widest text-[#6F8CAD] font-bold mb-1">
                 Account Number
               </p>
               <div className="flex items-center gap-3">
-                <span className="text-2xl sm:text-3xl font-extrabold text-[#0E1B4D] font-mono tracking-wider">
+                <span className="text-2xl sm:text-3xl font-extrabold text-[#1D3C6E] font-mono tabular-nums tracking-wider">
                   {FOUNDATION_META.bankAccount}
                 </span>
                 <button
+                  type="button"
                   onClick={handleCopyBank}
-                  className="p-2 rounded-lg bg-white border border-[#1B3FAF]/20 text-[#1B3FAF] hover:text-[#C81D25] hover:bg-slate-50 transition"
+                  className="p-2 rounded-md bg-white border border-[#9ABDE3] text-[#4365A1] hover:text-[#063BAD] hover:border-[#063BAD] transition cursor-pointer"
                   title="Copy Account Number"
                 >
-                  {copiedBank ? <Check className="w-5 h-5 text-emerald-600" /> : <Copy className="w-5 h-5" />}
+                  {copiedBank ? (
+                    <Check className="w-4 h-4 text-[#063BAD]" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
                 </button>
               </div>
 
-              <p className="text-xs text-[#0E1B4D]/70 mt-3 leading-relaxed">
-                Branch: Eldoret Branch. Account Name: <strong>Putting a Smile On Them Foundation</strong>.
+              <p className="text-xs text-[#263864] mt-3 leading-relaxed">
+                Account Name:{' '}
+                <strong className="text-[#1D3C6E]">
+                  Putting a Smile On Them Foundation
+                </strong>{' '}
+                (Eldoret Branch).
               </p>
             </div>
 
-            <div className="pt-6 mt-6 border-t border-[#1B3FAF]/10">
+            <div className="pt-6 mt-6 border-t border-[#9ABDE3]/40">
               <button
                 type="button"
                 onClick={() => onOpenDonate()}
-                className="w-full py-3 rounded-lg bg-white border border-[#1B3FAF] text-[#1B3FAF] hover:bg-[#1B3FAF] hover:text-white text-xs font-bold uppercase tracking-wider transition flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full py-3 rounded-md bg-white border border-[#C02523] text-[#C02523] hover:bg-[#C02523] hover:text-white text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Select Custom Giving Tier</span>
-                <Heart className="w-4 h-4 text-[#C81D25]" />
+                <Heart className="w-4 h-4" />
               </button>
             </div>
           </article>
-
         </div>
-
-        {/* Central I Want to Support CTA Button */}
-        <div className="mt-12 text-center">
-          <button
-            type="button"
-            onClick={() => onOpenDonate()}
-            className="inline-block bg-[#C81D25] hover:bg-[#1B3FAF] text-white px-10 py-4 font-bold uppercase tracking-widest text-sm transition shadow-glow rounded-md cursor-pointer"
-          >
-            I Want to Support
-          </button>
-        </div>
-
       </div>
     </section>
   );

@@ -6,12 +6,11 @@
 import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { StatsRibbon } from './components/StatsRibbon';
+import { ActionDomainsGrid } from './components/ActionDomainsGrid';
 import { AboutSection } from './components/AboutSection';
-import { TeamSection } from './components/TeamSection';
-import { FounderSection } from './components/FounderSection';
 import { BeneficiariesSection } from './components/BeneficiariesSection';
 import { DonationSection } from './components/DonationSection';
+import { Newsletter } from './components/Newsletter';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { DonationModal } from './components/DonationModal';
@@ -75,56 +74,60 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFF7E9] text-[#0E1B4D]">
-      {/* 1. Header & Navigation (matching puttingasmile.netlify.app) */}
+    <div className="min-h-screen flex flex-col bg-[#F3F1E6] text-[#1D3C6E]">
+      {/* 1. Top Utility Bar & Sticky White Navigation */}
       <Navbar
         currency={currency}
         onToggleCurrency={setCurrency}
         onOpenDonate={() => handleOpenDonate()}
-        onOpenRegister={() => handleOpenRegister('partner')}
+        onOpenRegister={() => handleOpenRegister('volunteer')}
         onOpenImpact={() => setIsImpactOpen(true)}
         activeSection={activeSection}
         onNavigate={handleNavigate}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Page Flow matching reference structure */}
       <main className="flex-1">
-        {/* 2. Hero Section */}
+        {/* 2. Photographic Hero + Floating Quick-Donate Card + Overlapping 3-Tab Action Bar */}
         <Hero
-          onOpenDonate={() => handleOpenDonate()}
+          currency={currency}
+          onOpenDonate={handleOpenDonate}
+          onOpenRegister={handleOpenRegister}
+          onNavigate={handleNavigate}
+        />
+
+        {/* 3. Our Areas of Action (5-Card Domain Grid) */}
+        <ActionDomainsGrid onOpenDonate={handleOpenDonate} />
+
+        {/* 4. Split Mission & Founder Story (50/50 Photo + Soft Parchment 2x2 Grid) */}
+        <AboutSection
+          onNavigate={handleNavigate}
+          onOpenImpact={() => setIsImpactOpen(true)}
+        />
+
+        {/* 5. Stories of Restoration & Leadership Team (Testimonial Cards) */}
+        <BeneficiariesSection
+          onOpenDonate={handleOpenDonate}
           onOpenRegister={() => handleOpenRegister('volunteer')}
-          onNavigate={handleNavigate}
         />
 
-        {/* 3. Royal Blue 4-Stat Ribbon */}
-        <StatsRibbon />
-
-        {/* 4. About Us (Story, Vision, Mission, Goals) */}
-        <AboutSection onNavigate={handleNavigate} />
-
-        {/* 5. Team Members (Leadership, Global Patron, Field Team) */}
-        <TeamSection onOpenRegister={() => handleOpenRegister('volunteer')} />
-
-        {/* 6. Founder Story (Photo & 2018 Promise Quote) */}
-        <FounderSection
-          onOpenDonate={() => handleOpenDonate()}
-          onNavigate={handleNavigate}
-        />
-
-        {/* 7. Beneficiaries (Wangui, Karis, JuJu) */}
-        <BeneficiariesSection onOpenDonate={handleOpenDonate} />
-
-        {/* 8. Donation Section (Till 3131630, Kingdom Bank 4012107537002) */}
+        {/* 7. Direct Giving Channels (M-Pesa Till 3131630 & Kingdom Bank 4012107537002) */}
         <DonationSection
           onOpenDonate={handleOpenDonate}
           onToast={showToast}
         />
 
-        {/* 9. Contact Section (Grace & Favour phones, WhatsApp, Send Message form) */}
-        <ContactSection onToast={showToast} />
+        {/* 8. Split Newsletter Banner (Stay informed, stay engaged) */}
+        <Newsletter onToast={showToast} />
+
+        {/* 9. Contact Information & Message Form */}
+        <ContactSection
+          onToast={showToast}
+          onOpenRegister={() => handleOpenRegister('volunteer')}
+        />
       </main>
 
-      {/* 10. Clean Dark Navy Footer */}
+      {/* 10. 5-Column Deep Navy Footer */}
       <Footer
         onOpenDonate={() => handleOpenDonate()}
         onOpenRegister={() => handleOpenRegister('volunteer')}
@@ -132,30 +135,33 @@ export default function App() {
         onNavigate={handleNavigate}
       />
 
-      {/* Mobile Sticky Quick Action Bar */}
-      <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-[#1B3FAF]/10 py-2.5 px-4 flex items-center justify-between gap-3 shadow-lg">
+      {/* Mobile Sticky Quick Action Bar (compact height < 15% viewport) */}
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-[#9ABDE3]/60 py-2 px-4 flex items-center justify-between gap-3 shadow-lg">
         <button
+          type="button"
           onClick={() => setIsImpactOpen(true)}
-          className="flex flex-col items-center justify-center text-[10px] font-bold text-[#0E1B4D] hover:text-[#C81D25] py-1"
+          className="flex flex-col items-center justify-center text-[10px] font-bold text-[#1D3C6E] hover:text-[#063BAD] py-1 cursor-pointer"
         >
-          <ShieldCheck className="w-4 h-4 text-[#1B3FAF] mb-0.5" />
-          <span>85% Transparency</span>
+          <ShieldCheck className="w-4 h-4 text-[#063BAD] mb-0.5" />
+          <span>85% Aid Ratio</span>
         </button>
 
         <button
-          onClick={() => handleNavigate('contact')}
-          className="flex flex-col items-center justify-center text-[10px] font-bold text-[#0E1B4D] hover:text-[#C81D25] py-1"
+          type="button"
+          onClick={() => handleOpenRegister('volunteer')}
+          className="flex flex-col items-center justify-center text-[10px] font-bold text-[#1D3C6E] hover:text-[#063BAD] py-1 cursor-pointer"
         >
-          <UserCheck className="w-4 h-4 text-[#C81D25] mb-0.5" />
-          <span>Contact</span>
+          <UserCheck className="w-4 h-4 text-[#063BAD] mb-0.5" />
+          <span>Volunteer</span>
         </button>
 
         <button
+          type="button"
           onClick={() => handleOpenDonate()}
-          className="flex-1 max-w-[190px] py-2.5 px-4 rounded-md bg-[#C81D25] hover:bg-[#a9161d] text-white font-extrabold text-xs uppercase tracking-wider shadow-md flex items-center justify-center gap-1.5"
+          className="flex-1 max-w-[190px] py-2.5 px-4 rounded-md bg-[#C02523] hover:bg-[#9E1D1B] text-white font-bold text-xs shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
         >
           <Heart className="w-3.5 h-3.5 fill-white" />
-          <span>Support Us</span>
+          <span>Donate Now</span>
         </button>
       </div>
 

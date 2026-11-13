@@ -13,53 +13,121 @@ export const FOUNDATION_META = {
   founderImage: "https://i.ibb.co/rf4mHppL/Whats-App-Image-2026-05-21-at-17-04-55.jpg",
   founderImg: "https://i.ibb.co/rf4mHppL/Whats-App-Image-2026-05-21-at-17-04-55.jpg",
   localFallbackImage: "/assets/aistudio/0c94d764051b263a253cc377356a49fb_b884add9.jpg",
-  
-  // Official Payment Details from puttingasmile.netlify.app
+
+  // Official Payment Details
   mpesaTill: "3131630",
   mpesaPaybill: "3131630",
   mpesaAccount: "3131630",
   mpesaType: "Buy Goods and Services",
   bankName: "Kingdom Bank",
   bankAccount: "4012107537002",
-  
+
   // Official Contacts
   phoneGrace: "0721880023",
   phoneFavour: "0706733065",
   whatsappGrace: "https://wa.me/254721880023",
   whatsappFavour: "https://wa.me/254706733065",
   email: "partners@puttingasmileonthem.org",
-  
+
   // Social
   youtubeUrl: "https://www.youtube.com/@puttingsmileonthemfoundation",
-  
-  founderQuote: "putting a smile on them Foundation was born from a dream God placed in my heart in 2018 — a promise that if I overcame street life, I would return to uplift and support vulnerable children and communities. In 2024, that dream became a reality through acts of love, hope, and giving back.",
+
+  founderStory:
+    "Putting a Smile on Them Foundation was born from a dream placed in the founder's heart in 2018: to return and uplift children and families after surviving life on the streets. In 2024, that promise took shape through practical love, emergency support, and long-term empowerment programs.",
+  founderQuote:
+    "putting a smile on them Foundation was born from a dream God placed in my heart in 2018 — a promise that if I overcame street life, I would return to uplift and support vulnerable children and communities. In 2024, that dream became a reality through acts of love, hope, and giving back.",
+  vision:
+    "A compassionate society where every child is safe, every widow is empowered, and every vulnerable family has a pathway to dignity and hope.",
+  mission:
+    "To restore lives through nutrition, education sponsorship, family support, and community partnerships that break the cycle of poverty and street vulnerability.",
 };
 
 export const CORE_STATS = [
-  { value: "500+", label: "Meals Weekly" },
-  { value: "50+", label: "Widows Supported" },
-  { value: "100%", label: "Transparency Focus" },
-  { value: "1", label: "Center in Progress" },
+  { value: "1,000+", label: "Lives Touched", icon: "Users" },
+  { value: "500+", label: "Meals Weekly", icon: "Heart" },
+  { value: "50+", label: "Widows Supported", icon: "HandHeart" },
+  { value: "100%", label: "Transparency Focus", icon: "ShieldCheck" },
+];
+
+export const ACTION_DOMAINS = [
+  {
+    id: "education",
+    title: "Education Pathways",
+    description: "Expand sustainable school sponsorships, uniforms, and learning kits for rescued street children in Eldoret.",
+    image: "https://i.ibb.co/9m4JGL1Z/Whats-App-Image-2026-05-23-at-11-56-03.jpg",
+    badgeBg: "bg-[#063BAD]",
+    iconName: "GraduationCap",
+    causeTitle: "Education Pathways & School Sponsorship",
+    detailedStory:
+      "We rescue children from street life and walk alongside them into safe classrooms. Each sponsorship provides durable school shoes, uniforms, exercise books, and ongoing mentorship so learners like Wangui and JuJu can thrive.",
+  },
+  {
+    id: "nutrition",
+    title: "Nutrition & Feeding",
+    description: "Delivering 500+ weekly meals and emergency food hampers to vulnerable households and street children.",
+    image: "/assets/aistudio/0c94d764051b263a253cc377356a49fb_b884add9.jpg",
+    badgeBg: "bg-[#224EA6]",
+    iconName: "Utensils",
+    causeTitle: "Weekly Feeding & Food Security Program",
+    detailedStory:
+      "Our Eldoret community outreach team coordinates weekly hot meals and emergency staple food baskets (maize flour, beans, oil, greens) so no child sleeps hungry.",
+  },
+  {
+    id: "rescue",
+    title: "Street Rescue & Care",
+    description: "Rescue and reintegrate children from street survival into safe environments with counseling and structure.",
+    image: "https://i.ibb.co/JRznQVKn/Whats-App-Image-2026-05-23-at-11-55-43.jpg",
+    badgeBg: "bg-[#689FF1]",
+    iconName: "Home",
+    causeTitle: "Street Rescue & Safe Reintegration",
+    detailedStory:
+      "Born out of our founder's own journey surviving street life, we conduct compassionate street outreach to connect vulnerable youth like Karis with stable shelter, mentorship, and school routines.",
+  },
+  {
+    id: "widows",
+    title: "Widows Empowerment",
+    description: "Supporting 50+ widows through mentorship, table-banking, and income-generating micro-enterprise grants.",
+    image: "https://i.ibb.co/rf4mHppL/Whats-App-Image-2026-05-21-at-17-04-55.jpg",
+    badgeBg: "bg-[#1D3C6E]",
+    iconName: "HandHeart",
+    causeTitle: "Widows Livelihood & Empowerment Initiative",
+    detailedStory:
+      "When widows are equipped with seed capital, small-business coaching, and peer mentorship, entire households achieve lasting dignity and self-reliance.",
+  },
+  {
+    id: "center",
+    title: "Community Center",
+    description: "Building and operationalizing our permanent community support center and safe haven in Eldoret.",
+    image: "https://i.ibb.co/qFnnn1xm/Whats-App-Image-2026-05-23-at-11-55-48.jpg",
+    badgeBg: "bg-[#C02523]",
+    iconName: "Building2",
+    causeTitle: "Permanent Eldoret Community Support Center",
+    detailedStory:
+      "With 1 center currently in progress, every brick and donation accelerates a permanent hub for meals, learning support, widow training, and safe refuge in Uasin Gishu County.",
+  },
 ];
 
 export const TEAM_MEMBERS = [
   {
-    roleCategory: "Leadership",
+    roleCategory: "Founding Member",
     name: "Director Sheila Mmbone",
-    description: "Provides strategic direction, partnership leadership, and program oversight.",
+    description: "Founding member providing strategic direction, partnership leadership, and program oversight across all Eldoret outreach initiatives.",
     avatarBadge: "SM",
+    image: "https://i.ibb.co/rf4mHppL/Whats-App-Image-2026-05-21-at-17-04-55.jpg",
   },
   {
-    roleCategory: "Global Patron",
-    name: "Evangelist Sharon (Canada)",
-    description: "Supports the foundation through advocacy, trust-building, and international backing.",
-    avatarBadge: "ES",
+    roleCategory: "Treasurer",
+    name: "Ms. Auma Grace Achieng",
+    description: "Oversees financial stewardship, transparent fund allocation, and accountable resource tracking across all Eldoret programs.",
+    avatarBadge: "AG",
+    image: "",
   },
   {
     roleCategory: "Field Team",
     name: "Community Outreach Team",
-    description: "Coordinates food distribution, beneficiary follow-up, and family support in Eldoret and surrounding areas.",
+    description: "Coordinates weekly food distribution, beneficiary follow-up, and family support in Eldoret and surrounding areas.",
     avatarBadge: "CO",
+    image: "",
   },
 ];
 
@@ -67,24 +135,30 @@ export const BENEFICIARIES = [
   {
     id: "wangui",
     name: "Wangui",
+    role: "Back in School · Eldoret",
     title: "Back in School & Rebuilding Life",
-    description: "Rescued from street survival and now back in school, Wangui is rebuilding her life with safety, structure, and renewed confidence.",
+    description:
+      "Rescued from street survival and now back in school, Wangui is rebuilding her life with safety, structure, and renewed confidence.",
     image: "https://i.ibb.co/9m4JGL1Z/Whats-App-Image-2026-05-23-at-11-56-03.jpg",
     link: "https://ibb.co/nq1TRvYP",
   },
   {
     id: "karis",
     name: "Karis",
+    role: "Classroom Mentorship · Eldoret",
     title: "Thriving in Focused Mentorship",
-    description: "Karis moved from instability to focused learning support and is now thriving in classroom routines and mentorship.",
+    description:
+      "Karis moved from instability to focused learning support and is now thriving in classroom routines and mentorship.",
     image: "https://i.ibb.co/JRznQVKn/Whats-App-Image-2026-05-23-at-11-55-43.jpg",
     link: "https://ibb.co/RpC2yf92",
   },
   {
     id: "juju",
     name: "JuJu",
+    role: "Sponsored Learner · Eldoret",
     title: "Educational Journey & Hope",
-    description: "With consistent sponsorship and care, JuJu has transitioned away from street life and into a brighter educational journey.",
+    description:
+      "With consistent sponsorship and care, JuJu has transitioned away from street life and into a brighter educational journey.",
     image: "https://i.ibb.co/qFnnn1xm/Whats-App-Image-2026-05-23-at-11-55-48.jpg",
     link: "https://ibb.co/93vvvYGy",
   },
@@ -93,28 +167,27 @@ export const BENEFICIARIES = [
 export const ABOUT_PILLARS = [
   {
     id: "story",
-    title: "Foundation Story",
-    content: "Putting a Smile on Them Foundation was born from a dream placed in the founder's heart in 2018: to return and uplift children and families after surviving life on the streets. In 2024, that promise took shape through practical love, emergency support, and long-term empowerment programs.",
+    title: "100% Transparency",
+    description: "We guarantee transparent management and accountable stewardship of every shilling and dollar.",
+    icon: "ShieldCheck",
   },
   {
-    id: "vision",
-    title: "Vision",
-    content: "A compassionate society where every child is safe, every widow is empowered, and every vulnerable family has a pathway to dignity and hope.",
+    id: "impact",
+    title: "Measurable Impact",
+    description: "500+ meals served weekly and 50+ widows actively supported across Uasin Gishu County.",
+    icon: "HeartHandshake",
   },
   {
-    id: "mission",
-    title: "Mission",
-    content: "To restore lives through nutrition, education sponsorship, family support, and community partnerships that break the cycle of poverty and street vulnerability.",
+    id: "team",
+    title: "Committed Team",
+    description: "Led by Founding Member Director Sheila Mmbone, Treasurer Ms. Auma Grace Achieng, and dedicated Eldoret field coordinators.",
+    icon: "Users",
   },
   {
-    id: "goals",
-    title: "Goals",
-    bullets: [
-      "Rescue and reintegrate children from street life into safe environments.",
-      "Expand sustainable education sponsorship for vulnerable learners.",
-      "Empower widows through mentorship and income-generating support.",
-      "Complete and operationalize a permanent community support center.",
-    ],
+    id: "center",
+    title: "Permanent Center Goal",
+    description: "Rescuing children from street life and completing our permanent community support center.",
+    icon: "Building2",
   },
 ];
 
@@ -188,7 +261,7 @@ export const PROJECT_CAUSES: ProjectCause[] = [
     targetAmountKES: 2700000,
     raisedAmountKES: 2130000,
     beneficiariesCount: 450,
-    imageFallbackGradient: "from-blue-700 to-indigo-900",
+    imageFallbackGradient: "from-[#063BAD] to-[#1D3C6E]",
     iconName: "BookOpen",
   },
   {
@@ -203,7 +276,7 @@ export const PROJECT_CAUSES: ProjectCause[] = [
     targetAmountKES: 1800000,
     raisedAmountKES: 1470000,
     beneficiariesCount: 620,
-    imageFallbackGradient: "from-emerald-700 to-teal-900",
+    imageFallbackGradient: "from-[#C02523] to-[#1D3C6E]",
     iconName: "Utensils",
   },
 ];
@@ -252,20 +325,18 @@ export const FINANCIAL_ALLOCATION = [
     category: "Direct Frontline Aid (Nutrition & School Sponsorships)",
     percentage: 85,
     description: "Direct purchase of grain baskets, school tuition, uniforms, medical care, and widow grants.",
-    color: "bg-[#1B3FAF]",
+    color: "bg-[#063BAD]",
   },
   {
     category: "Rescue Logistics & Field Operations",
     percentage: 10,
     description: "Transport, volunteer outreach, family follow-ups, and field home assessments in Eldoret.",
-    color: "bg-[#C81D25]",
+    color: "bg-[#C02523]",
   },
   {
     category: "Administration & Center Development",
     percentage: 5,
     description: "Accountability auditing, bank transactions, and regulatory compliance.",
-    color: "bg-[#0E1B4D]",
+    color: "bg-[#689FF1]",
   },
 ];
-
-

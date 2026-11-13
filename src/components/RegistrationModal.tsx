@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { X, UserCheck, HeartHandshake, Users, CheckCircle2, Building, Sparkles, MapPin, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { X, UserCheck, HeartHandshake, Users, CheckCircle2, Building, ArrowRight } from 'lucide-react';
 import { RegistrationRole } from '../types';
-import { FOUNDATION_META } from '../data/foundationData';
 
 interface RegistrationModalProps {
   isOpen: boolean;
@@ -16,8 +15,6 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   defaultRole = 'volunteer',
   onSuccessToast,
 }) => {
-  if (!isOpen) return null;
-
   const [activeTab, setActiveTab] = useState<RegistrationRole>(defaultRole);
 
   // Volunteer Fields
@@ -25,7 +22,6 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   const [vEmail, setVEmail] = useState('');
   const [vPhone, setVPhone] = useState('');
   const [vLocation, setVLocation] = useState('Eldoret Town');
-  const [vAvailability, setVAvailability] = useState('Weekends (Saturdays & Sundays)');
   const [vInterests, setVInterests] = useState<string[]>([
     'Field Outreach & Distribution',
     'Education & Mentorship',
@@ -42,7 +38,6 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   // Beneficiary Fields
   const [bName, setBName] = useState('');
   const [bPhone, setBPhone] = useState('');
-  const [bLocation, setBLocation] = useState('Huruma Settlement');
   const [bNeed, setBNeed] = useState<'food' | 'education' | 'widow_empowerment' | 'medical'>('education');
   const [bFamilySize, setBFamilySize] = useState('4');
   const [bSituation, setBSituation] = useState('');
@@ -54,6 +49,15 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
     idNumber: string;
     message: string;
   } | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setActiveTab(defaultRole);
+      setConfirmedData(null);
+    }
+  }, [isOpen, defaultRole]);
+
+  if (!isOpen) return null;
 
   const interestOptions = [
     'Field Outreach & Distribution',
@@ -102,27 +106,27 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl relative my-8 border border-slate-200 overflow-hidden">
+    <div className="fixed inset-0 z-50 bg-[#1D3C6E]/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+      <div className="bg-white rounded-2xl max-w-2xl w-full shadow-2xl relative my-8 border border-[#9ABDE3]/60 overflow-hidden">
         
         {/* Modal Header */}
-        <div className="bg-[#16a34a] text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-[#1D3C6E] text-white px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white">
+            <div className="w-8 h-8 rounded-lg bg-[#063BAD] border border-white/15 flex items-center justify-center text-[#FAEB8E]">
               <UserCheck className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-base sm:text-lg font-bold">
-                Community & Engagement Portal
+              <h2 className="text-base sm:text-lg font-serif font-bold">
+                Community &amp; Engagement Portal
               </h2>
-              <p className="text-xs text-emerald-100">
+              <p className="text-xs text-[#9ABDE3]">
                 Join our mission in Eldoret or register for support
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors"
+            className="p-1.5 rounded-lg text-white/75 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -133,34 +137,34 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
           {confirmedData ? (
             /* CONFIRMATION STATE */
             <div className="text-center py-6 space-y-6">
-              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                <CheckCircle2 className="w-9 h-9 text-emerald-600" />
+              <div className="w-16 h-16 mx-auto rounded-full bg-[#FAEB8E] text-[#063BAD] flex items-center justify-center border border-[#E8DB7A]">
+                <CheckCircle2 className="w-9 h-9 text-[#063BAD]" />
               </div>
 
               <div className="space-y-2">
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#063BAD]">
                   Application Confirmed
                 </span>
-                <h3 className="text-2xl font-extrabold text-slate-900">
+                <h3 className="text-2xl font-extrabold text-[#1D3C6E]">
                   Welcome, {confirmedData.name}!
                 </h3>
-                <p className="text-sm text-slate-600 max-w-md mx-auto">
+                <p className="text-sm text-[#4365A1] max-w-md mx-auto">
                   {confirmedData.message}
                 </p>
               </div>
 
-              <div className="max-w-sm mx-auto bg-slate-50 p-4 rounded-xl border border-slate-200 text-left space-y-2 text-xs">
-                <div className="flex justify-between border-b border-slate-200 pb-2">
-                  <span className="text-slate-500">Registration ID:</span>
-                  <span className="font-mono font-bold text-slate-900">{confirmedData.idNumber}</span>
+              <div className="max-w-sm mx-auto bg-[#F3F1E6] p-4 rounded-xl border border-[#9ABDE3] text-left space-y-2 text-xs">
+                <div className="flex justify-between border-b border-[#9ABDE3]/60 pb-2">
+                  <span className="text-[#4365A1]">Registration ID:</span>
+                  <span className="font-mono font-bold text-[#1D3C6E]">{confirmedData.idNumber}</span>
                 </div>
-                <div className="flex justify-between border-b border-slate-200 pb-2">
-                  <span className="text-slate-500">Category:</span>
-                  <span className="font-bold uppercase text-emerald-700">{confirmedData.role}</span>
+                <div className="flex justify-between border-b border-[#9ABDE3]/60 pb-2">
+                  <span className="text-[#4365A1]">Category:</span>
+                  <span className="font-bold uppercase text-[#063BAD]">{confirmedData.role}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Headquarters:</span>
-                  <span className="font-semibold text-slate-700">Eldoret, Kenya</span>
+                  <span className="text-[#4365A1]">Headquarters:</span>
+                  <span className="font-semibold text-[#1D3C6E]">Eldoret, Kenya</span>
                 </div>
               </div>
 
@@ -168,7 +172,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-6 py-2.5 rounded-lg bg-slate-900 text-white text-xs font-bold hover:bg-slate-800"
+                  className="px-6 py-2.5 rounded-lg bg-[#063BAD] text-white text-xs font-bold hover:bg-[#224EA6] cursor-pointer"
                 >
                   Return to Main Page
                 </button>
@@ -178,43 +182,43 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
             <div className="space-y-6">
               
               {/* Role Tabs */}
-              <div className="grid grid-cols-3 gap-2 p-1 bg-slate-100 rounded-xl">
+              <div className="grid grid-cols-3 gap-2 p-1 bg-[#F3F1E6] rounded-xl border border-[#9ABDE3]/50">
                 <button
                   type="button"
                   onClick={() => setActiveTab('volunteer')}
-                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     activeTab === 'volunteer'
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-[#063BAD] text-white shadow-xs'
+                      : 'text-[#263864] hover:text-[#1D3C6E]'
                   }`}
                 >
-                  <HeartHandshake className="w-4 h-4 text-emerald-600" />
+                  <HeartHandshake className={`w-4 h-4 ${activeTab === 'volunteer' ? 'text-[#FAEB8E]' : 'text-[#063BAD]'}`} />
                   <span>Volunteer</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveTab('partner')}
-                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     activeTab === 'partner'
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-[#063BAD] text-white shadow-xs'
+                      : 'text-[#263864] hover:text-[#1D3C6E]'
                   }`}
                 >
-                  <Building className="w-4 h-4 text-blue-600" />
+                  <Building className={`w-4 h-4 ${activeTab === 'partner' ? 'text-[#FAEB8E]' : 'text-[#224EA6]'}`} />
                   <span>Partner / CSR</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveTab('beneficiary')}
-                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 ${
+                  className={`py-2 px-3 rounded-lg text-xs font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
                     activeTab === 'beneficiary'
-                      ? 'bg-white text-slate-900 shadow-xs'
-                      : 'text-slate-600 hover:text-slate-900'
+                      ? 'bg-[#063BAD] text-white shadow-xs'
+                      : 'text-[#263864] hover:text-[#1D3C6E]'
                   }`}
                 >
-                  <Users className="w-4 h-4 text-amber-600" />
+                  <Users className={`w-4 h-4 ${activeTab === 'beneficiary' ? 'text-[#FAEB8E]' : 'text-[#C02523]'}`} />
                   <span>Community Aid</span>
                 </button>
               </div>
@@ -227,7 +231,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Full Name *
                         </label>
                         <input
@@ -236,11 +240,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="Your full name"
                           value={vName}
                           onChange={(e) => setVName(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Email Address *
                         </label>
                         <input
@@ -249,14 +253,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="name@example.com"
                           value={vEmail}
                           onChange={(e) => setVEmail(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Phone / WhatsApp *
                         </label>
                         <input
@@ -265,17 +269,17 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="+254 7XX XXX XXX"
                           value={vPhone}
                           onChange={(e) => setVPhone(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Location Zone
                         </label>
                         <select
                           value={vLocation}
                           onChange={(e) => setVLocation(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         >
                           <option value="Eldoret Town">Eldoret Town Center</option>
                           <option value="Huruma Settlement">Huruma Settlement</option>
@@ -289,7 +293,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
 
                     {/* Areas of Interest Checkboxes */}
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-2">
+                      <label className="block text-xs font-bold text-[#1D3C6E] mb-2">
                         Areas of Interest (Select all that apply):
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -298,15 +302,15 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                             key={opt}
                             className={`flex items-center gap-2 p-2 rounded-lg border text-xs cursor-pointer transition-colors ${
                               vInterests.includes(opt)
-                                ? 'bg-emerald-50 border-emerald-500 text-emerald-900 font-semibold'
-                                : 'border-slate-200 text-slate-700 hover:bg-slate-50'
+                                ? 'bg-[#F3F1E6] border-[#063BAD] text-[#1D3C6E] font-semibold'
+                                : 'border-[#9ABDE3]/60 text-[#263864] hover:bg-[#F3F1E6]/50'
                             }`}
                           >
                             <input
                               type="checkbox"
                               checked={vInterests.includes(opt)}
                               onChange={() => handleToggleInterest(opt)}
-                              className="w-4 h-4 text-emerald-600 rounded"
+                              className="w-4 h-4 accent-[#063BAD] rounded"
                             />
                             <span>{opt}</span>
                           </label>
@@ -315,7 +319,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                      <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                         Any relevant skills or experience? (Optional)
                       </label>
                       <textarea
@@ -323,7 +327,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                         placeholder="e.g. Teaching experience, first-aid certified, photography, driving license..."
                         value={vSkills}
                         onChange={(e) => setVSkills(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                       />
                     </div>
                   </div>
@@ -334,7 +338,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Company / Organization Name *
                         </label>
                         <input
@@ -343,11 +347,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="e.g. Acme Kenya Ltd"
                           value={pOrg}
                           onChange={(e) => setPOrg(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Contact Person *
                         </label>
                         <input
@@ -356,14 +360,14 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="e.g. David Mutai"
                           value={pContact}
                           onChange={(e) => setPContact(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Corporate Email *
                         </label>
                         <input
@@ -372,17 +376,17 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="contact@company.com"
                           value={pEmail}
                           onChange={(e) => setPEmail(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Partnership Focus
                         </label>
                         <select
                           value={pType}
                           onChange={(e) => setPType(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         >
                           <option value="corporate_csr">Corporate CSR Grant</option>
                           <option value="school_sponsorship">School Supply Kits Sponsorship</option>
@@ -393,7 +397,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                      <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                         Collaboration Message *
                       </label>
                       <textarea
@@ -402,7 +406,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                         placeholder="Tell us about your organization's goals and how you'd like to support our Eldoret initiatives..."
                         value={pMessage}
                         onChange={(e) => setPMessage(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                       />
                     </div>
                   </div>
@@ -413,7 +417,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Applicant / Guardian Full Name *
                         </label>
                         <input
@@ -422,11 +426,11 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="e.g. Esther Kipkoech"
                           value={bName}
                           onChange={(e) => setBName(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Contact Phone Number *
                         </label>
                         <input
@@ -435,20 +439,22 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           placeholder="+254 7XX XXX XXX"
                           value={bPhone}
                           onChange={(e) => setBPhone(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Assistance Category
                         </label>
                         <select
                           value={bNeed}
-                          onChange={(e: any) => setBNeed(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                            setBNeed(e.target.value as 'food' | 'education' | 'widow_empowerment' | 'medical')
+                          }
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         >
                           <option value="education">School Uniforms, Books & Fee Support</option>
                           <option value="food">Emergency Family Food Basket</option>
@@ -457,7 +463,7 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                         </select>
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                        <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                           Household Size
                         </label>
                         <input
@@ -466,13 +472,13 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                           max={15}
                           value={bFamilySize}
                           onChange={(e) => setBFamilySize(e.target.value)}
-                          className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                          className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
+                      <label className="block text-xs font-bold text-[#1D3C6E] mb-1">
                         Brief Situation / Need Details *
                       </label>
                       <textarea
@@ -481,20 +487,20 @@ export const RegistrationModal: React.FC<RegistrationModalProps> = ({
                         placeholder="Please briefly explain your family's situation and specific needs so our social worker can schedule a home visit..."
                         value={bSituation}
                         onChange={(e) => setBSituation(e.target.value)}
-                        className="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs text-slate-900 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                        className="w-full bg-[#F3F1E6]/50 border border-[#9ABDE3] rounded-lg px-3 py-2 text-xs text-[#1D3C6E] focus:outline-hidden focus:ring-2 focus:ring-[#063BAD]"
                       />
                     </div>
                   </div>
                 )}
 
                 {/* Submit Action */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="text-[11px] text-slate-500">
+                <div className="pt-4 border-t border-[#9ABDE3]/40 flex flex-wrap items-center justify-between gap-3">
+                  <span className="text-[11px] text-[#6F8CAD]">
                     All applications handled strictly according to our Child Protection & Privacy Charter.
                   </span>
                   <button
                     type="submit"
-                    className="px-6 py-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 text-white font-bold text-xs shadow-md flex items-center gap-1.5"
+                    className="px-6 py-2.5 rounded-md bg-[#063BAD] hover:bg-[#224EA6] text-white font-bold text-xs shadow-sm flex items-center gap-1.5 cursor-pointer"
                   >
                     <span>Submit {activeTab === 'beneficiary' ? 'Request' : 'Application'}</span>
                     <ArrowRight className="w-3.5 h-3.5" />

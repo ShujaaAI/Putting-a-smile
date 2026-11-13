@@ -1,12 +1,24 @@
 import React, { useState } from 'react';
 import { FOUNDATION_META } from '../data/foundationData';
-import { Phone, Mail, MapPin, MessageCircle, Youtube, CheckCircle2 } from 'lucide-react';
+import {
+  Phone,
+  Mail,
+  MapPin,
+  MessageCircle,
+  Youtube,
+  CheckCircle2,
+  UserCheck,
+} from 'lucide-react';
 
 interface ContactSectionProps {
   onToast: (msg: string) => void;
+  onOpenRegister: () => void;
 }
 
-export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
+export const ContactSection: React.FC<ContactSectionProps> = ({
+  onToast,
+  onOpenRegister,
+}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [subject, setSubject] = useState('Sponsorship');
@@ -18,7 +30,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
     if (!name.trim() || !email.trim()) return;
 
     setSubmitted(true);
-    onToast(`Thank you, ${name}! Your message regarding "${subject}" has been delivered.`);
+    onToast(
+      `Thank you, ${name}! Your message regarding "${subject}" has been delivered.`
+    );
     setTimeout(() => {
       setName('');
       setEmail('');
@@ -28,65 +42,75 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#FFF7E9] border-t border-[#1B3FAF]/10">
+    <section
+      id="contact"
+      className="py-16 sm:py-20 bg-[#F0EDE0] border-t border-[#E8DB7A]"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        
-        {/* Left: Contact Info */}
+        {/* Left: Contact Information */}
         <div className="space-y-6">
-          <h2 className="font-serif text-3xl sm:text-4xl text-[#0E1B4D] font-bold">
-            Contact Information
-          </h2>
-          
-          <p className="text-[#0E1B4D]/80 leading-relaxed text-base">
-            Reach us for partnerships, volunteering, sponsorships, and direct support for vulnerable children and widows.
+          <div>
+            <span className="text-xs font-bold uppercase tracking-widest text-[#C02523]">
+              REACH OUR ELDORET TEAM
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1D3C6E] mt-1">
+              Contact Information
+            </h2>
+          </div>
+
+          <p className="text-sm sm:text-base text-[#263864] leading-relaxed max-w-lg">
+            Reach us for partnerships, volunteering, sponsorships, and direct support for vulnerable children and widows in Eldoret and beyond.
           </p>
 
-          <ul className="space-y-4 pt-2 text-sm sm:text-base text-[#0E1B4D]">
-            {/* Phone */}
+          <ul className="space-y-4 pt-1 text-sm text-[#1D3C6E]">
             <li className="flex gap-3.5 items-start">
-              <Phone className="w-5 h-5 text-[#C81D25] shrink-0 mt-0.5" />
-              <div>
+              <div className="w-9 h-9 rounded-lg bg-white border border-[#9ABDE3]/70 flex items-center justify-center text-[#063BAD] shrink-0">
+                <Phone className="w-4 h-4" />
+              </div>
+              <div className="pt-1">
                 <strong>Phone:</strong> Grace{' '}
                 <a
                   href={`tel:${FOUNDATION_META.phoneGrace}`}
-                  className="text-[#1B3FAF] font-bold hover:text-[#C81D25] transition"
+                  className="text-[#063BAD] font-bold hover:text-[#C02523] hover:underline"
                 >
                   {FOUNDATION_META.phoneGrace}
                 </a>
                 , Favour{' '}
                 <a
                   href={`tel:${FOUNDATION_META.phoneFavour}`}
-                  className="text-[#1B3FAF] font-bold hover:text-[#C81D25] transition"
+                  className="text-[#063BAD] font-bold hover:text-[#C02523] hover:underline"
                 >
                   {FOUNDATION_META.phoneFavour}
                 </a>
               </div>
             </li>
 
-            {/* Email */}
             <li className="flex gap-3.5 items-start">
-              <Mail className="w-5 h-5 text-[#C81D25] shrink-0 mt-0.5" />
-              <div>
+              <div className="w-9 h-9 rounded-lg bg-white border border-[#9ABDE3]/70 flex items-center justify-center text-[#063BAD] shrink-0">
+                <Mail className="w-4 h-4" />
+              </div>
+              <div className="pt-1">
                 <strong>Official Email:</strong>{' '}
                 <a
                   href={`mailto:${FOUNDATION_META.email}`}
-                  className="text-[#1B3FAF] font-bold hover:text-[#C81D25] transition"
+                  className="text-[#063BAD] font-bold hover:text-[#C02523] hover:underline"
                 >
                   {FOUNDATION_META.email}
                 </a>
               </div>
             </li>
 
-            {/* WhatsApp */}
             <li className="flex gap-3.5 items-start">
-              <MessageCircle className="w-5 h-5 text-[#C81D25] shrink-0 mt-0.5" />
-              <div>
+              <div className="w-9 h-9 rounded-lg bg-white border border-[#9ABDE3]/70 flex items-center justify-center text-[#063BAD] shrink-0">
+                <MessageCircle className="w-4 h-4" />
+              </div>
+              <div className="pt-1">
                 <strong>WhatsApp:</strong> Grace{' '}
                 <a
                   href={FOUNDATION_META.whatsappGrace}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1B3FAF] font-bold hover:text-[#C81D25] transition underline"
+                  className="text-[#063BAD] font-bold hover:text-[#C02523] hover:underline"
                 >
                   {FOUNDATION_META.phoneGrace}
                 </a>
@@ -95,63 +119,61 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
                   href={FOUNDATION_META.whatsappFavour}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#1B3FAF] font-bold hover:text-[#C81D25] transition underline"
+                  className="text-[#063BAD] font-bold hover:text-[#C02523] hover:underline"
                 >
                   {FOUNDATION_META.phoneFavour}
                 </a>
               </div>
             </li>
 
-            {/* Location */}
             <li className="flex gap-3.5 items-start">
-              <MapPin className="w-5 h-5 text-[#C81D25] shrink-0 mt-0.5" />
-              <div>
+              <div className="w-9 h-9 rounded-lg bg-white border border-[#9ABDE3]/70 flex items-center justify-center text-[#063BAD] shrink-0">
+                <MapPin className="w-4 h-4" />
+              </div>
+              <div className="pt-1">
                 <strong>Location:</strong> {FOUNDATION_META.location}
               </div>
             </li>
           </ul>
 
-          {/* Social Media */}
-          <div className="pt-4">
-            <p className="uppercase tracking-widest text-xs font-bold text-[#1B3FAF] mb-3">
-              Social Media
-            </p>
-            <div className="flex gap-3">
-              <a
-                href={FOUNDATION_META.youtubeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1B3FAF] text-white rounded-full flex items-center justify-center hover:bg-[#C81D25] transition shadow-xs"
-                title="Watch on YouTube"
-              >
-                <Youtube className="w-5 h-5" />
-              </a>
-              <a
-                href={FOUNDATION_META.whatsappGrace}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#1B3FAF] text-white rounded-full flex items-center justify-center hover:bg-[#C81D25] transition shadow-xs"
-                title="Chat on WhatsApp"
-              >
-                <MessageCircle className="w-5 h-5" />
-              </a>
-            </div>
+          {/* Action / Social Links */}
+          <div className="pt-3 flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={onOpenRegister}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-white border border-[#063BAD] text-[#063BAD] hover:bg-[#063BAD] hover:text-white text-xs font-bold transition cursor-pointer"
+            >
+              <UserCheck className="w-4 h-4" />
+              <span>Open Volunteer &amp; Partner Portal</span>
+            </button>
+
+            <a
+              href={FOUNDATION_META.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-9 h-9 bg-[#C02523] text-white rounded-md flex items-center justify-center hover:bg-[#1D3C6E] transition shadow-xs"
+              title="Watch on YouTube"
+            >
+              <Youtube className="w-4 h-4" />
+            </a>
           </div>
         </div>
 
-        {/* Right: Send a Message Form */}
-        <div className="bg-white rounded-2xl border border-[#1B3FAF]/15 p-7 sm:p-8 shadow-xs">
-          <h3 className="font-serif text-2xl mb-4 text-[#1B3FAF] font-bold">
+        {/* Right: Send a Message Form Card */}
+        <div className="bg-white rounded-xl border border-[#9ABDE3]/70 p-7 sm:p-8 shadow-card">
+          <h3 className="font-serif text-2xl font-bold text-[#1D3C6E] mb-4">
             Send a Message
           </h3>
 
           {submitted ? (
-            <div className="bg-[#FFF7E9] border border-[#1B3FAF]/20 rounded-xl p-6 text-center space-y-3">
-              <div className="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                <CheckCircle2 className="w-7 h-7 text-emerald-600" />
+            <div className="bg-[#F3F1E6] border border-[#063BAD]/30 rounded-xl p-6 text-center space-y-3">
+              <div className="w-12 h-12 mx-auto rounded-full bg-[#689FF1]/20 text-[#063BAD] flex items-center justify-center">
+                <CheckCircle2 className="w-7 h-7" />
               </div>
-              <h4 className="text-lg font-bold text-[#0E1B4D]">Message Received!</h4>
-              <p className="text-xs text-[#0E1B4D]/80">
+              <h4 className="text-lg font-bold text-[#1D3C6E]">
+                Message Received!
+              </h4>
+              <p className="text-xs text-[#4365A1]">
                 Thank you for reaching out. Our team in Eldoret will reply to your email shortly.
               </p>
             </div>
@@ -164,7 +186,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
                   placeholder="Your Name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full border border-[#1B3FAF]/20 focus:border-[#1B3FAF] outline-hidden px-4 py-3 rounded-lg text-sm text-[#0E1B4D] focus:ring-1 focus:ring-[#1B3FAF]"
+                  className="w-full border border-[#9ABDE3] focus:border-[#063BAD] outline-hidden px-4 py-3 rounded-md text-sm text-[#1D3C6E] placeholder-[#6F8CAD] focus:ring-1 focus:ring-[#063BAD]"
                 />
               </div>
 
@@ -175,7 +197,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
                   placeholder="Email Address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full border border-[#1B3FAF]/20 focus:border-[#1B3FAF] outline-hidden px-4 py-3 rounded-lg text-sm text-[#0E1B4D] focus:ring-1 focus:ring-[#1B3FAF]"
+                  className="w-full border border-[#9ABDE3] focus:border-[#063BAD] outline-hidden px-4 py-3 rounded-md text-sm text-[#1D3C6E] placeholder-[#6F8CAD] focus:ring-1 focus:ring-[#063BAD]"
                 />
               </div>
 
@@ -183,7 +205,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
                 <select
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
-                  className="w-full border border-[#1B3FAF]/20 focus:border-[#1B3FAF] outline-hidden px-4 py-3 rounded-lg text-sm text-[#0E1B4D] bg-white focus:ring-1 focus:ring-[#1B3FAF]"
+                  className="w-full border border-[#9ABDE3] focus:border-[#063BAD] outline-hidden px-4 py-3 rounded-md text-sm text-[#1D3C6E] bg-white focus:ring-1 focus:ring-[#063BAD]"
                 >
                   <option value="Sponsorship">Sponsorship</option>
                   <option value="Donation">Donation</option>
@@ -199,20 +221,19 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onToast }) => {
                   placeholder="How would you like to support?"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
-                  className="w-full border border-[#1B3FAF]/20 focus:border-[#1B3FAF] outline-hidden px-4 py-3 rounded-lg text-sm text-[#0E1B4D] focus:ring-1 focus:ring-[#1B3FAF]"
+                  className="w-full border border-[#9ABDE3] focus:border-[#063BAD] outline-hidden px-4 py-3 rounded-md text-sm text-[#1D3C6E] placeholder-[#6F8CAD] focus:ring-1 focus:ring-[#063BAD]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-[#1B3FAF] text-white font-bold uppercase tracking-widest py-3.5 rounded-lg hover:bg-[#C81D25] transition cursor-pointer text-xs"
+                className="w-full bg-[#063BAD] hover:bg-[#224EA6] text-white font-bold py-3.5 rounded-md transition cursor-pointer text-sm shadow-xs"
               >
                 Submit Message
               </button>
             </form>
           )}
         </div>
-
       </div>
     </section>
   );

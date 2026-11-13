@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import { FOUNDATION_META } from '../data/foundationData';
 
 interface NewsletterProps {
   onToast: (msg: string) => void;
@@ -16,60 +17,73 @@ export const Newsletter: React.FC<NewsletterProps> = ({ onToast }) => {
       return;
     }
     setSubscribed(true);
-    onToast('Thank you for subscribing to our Eldoret newsletter!');
+    onToast('Thank you for subscribing to our Eldoret mission updates!');
   };
 
   return (
-    <section className="bg-[#16a34a] text-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-8">
-        
-        {/* Left Side: Airplane icon + text */}
-        <div className="flex items-center gap-5 max-w-xl">
-          <div className="w-14 h-14 rounded-2xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0">
-            <Send className="w-7 h-7 text-white stroke-[1.8] -rotate-12 translate-x-0.5" />
+    <section className="relative bg-white overflow-hidden border-t border-[#9ABDE3]/40">
+      <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 items-stretch">
+        {/* Left Column */}
+        <div className="lg:col-span-6 p-8 sm:p-12 lg:p-16 flex flex-col justify-center space-y-5 relative z-10 bg-white">
+          <div className="space-y-2.5 max-w-lg">
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1D3C6E] leading-tight">
+              Stay informed,{' '}
+              <span className="text-[#063BAD]">stay engaged</span>
+            </h2>
+            <p className="text-sm text-[#4365A1] leading-relaxed">
+              Subscribe to our newsletter to receive Eldoret field updates, impact reports, and stories of lives restored.
+            </p>
           </div>
-          <div>
-            <span className="text-xs font-extrabold tracking-widest text-emerald-100 uppercase">
-              STAY CONNECTED
-            </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Subscribe To Our Newsletter
-            </h3>
-            <p className="text-sm text-emerald-100 mt-1">
-              Stay updated with our latest community activities, food distribution drives, and heartwarming success stories in Eldoret.
+
+          <div className="max-w-lg">
+            {subscribed ? (
+              <div className="bg-[#F3F1E6] border border-[#063BAD]/30 rounded-lg p-4 text-[#1D3C6E] flex items-center gap-2.5">
+                <CheckCircle2 className="w-5 h-5 text-[#063BAD] shrink-0" />
+                <span className="text-xs sm:text-sm font-semibold">
+                  You&apos;re subscribed! Thank you for standing with our Eldoret community.
+                </span>
+              </div>
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="flex flex-col sm:flex-row gap-2.5"
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 bg-white border border-[#9ABDE3] text-[#1D3C6E] rounded-md px-4 py-3 text-sm placeholder-[#6F8CAD] focus:outline-hidden focus:border-[#063BAD] focus:ring-1 focus:ring-[#063BAD]"
+                />
+                <button
+                  type="submit"
+                  className="px-6 py-3 bg-[#063BAD] hover:bg-[#224EA6] text-white text-sm font-semibold rounded-md transition-colors shadow-xs whitespace-nowrap cursor-pointer"
+                >
+                  Subscribe
+                </button>
+              </form>
+            )}
+            <p className="text-[11px] text-[#6F8CAD] mt-2.5">
+              No spam, unsubscribe at any time.
             </p>
           </div>
         </div>
 
-        {/* Right Side: Input + Dark Blue CTA matching reference */}
-        <div className="w-full lg:w-auto min-w-[340px] sm:min-w-[420px]">
-          {subscribed ? (
-            <div className="bg-white/20 backdrop-blur-xs rounded-xl p-3.5 border border-white/30 text-white flex items-center gap-2.5">
-              <CheckCircle2 className="w-5 h-5 text-emerald-200 shrink-0" />
-              <span className="text-sm font-semibold">
-                You're subscribed! Check your inbox for our welcome dispatch.
-              </span>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2">
-              <input
-                type="email"
-                required
-                placeholder="Enter your email address"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full sm:w-72 bg-white text-slate-900 rounded-lg px-4 py-3 text-sm font-medium placeholder-slate-400 focus:outline-hidden focus:ring-2 focus:ring-slate-900 shadow-xs"
-              />
-              <button
-                type="submit"
-                className="px-6 py-3 bg-[#0b3b60] hover:bg-[#082b47] active:bg-[#062137] text-white text-sm font-bold rounded-lg transition-colors shadow-sm whitespace-nowrap focus:outline-hidden"
-              >
-                Subscribe Now
-              </button>
-            </form>
-          )}
+        {/* Right Column */}
+        <div className="lg:col-span-6 relative min-h-[260px] lg:min-h-[340px] bg-[#1D3C6E] overflow-hidden">
+          <img
+            src={FOUNDATION_META.heroImage}
+            alt="Children smiling in Eldoret"
+            className="w-full h-full object-cover object-center"
+            referrerPolicy="no-referrer"
+            onError={(e) => {
+              e.currentTarget.src = FOUNDATION_META.localFallbackImage;
+            }}
+          />
+          <div className="hidden lg:block absolute inset-y-0 left-0 w-36 bg-gradient-to-r from-white via-white/70 to-transparent" />
+          <div className="lg:hidden absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white to-transparent" />
         </div>
-
       </div>
     </section>
   );
