@@ -61,7 +61,7 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
             >
               <div>
                 <div className="aspect-[16/11] bg-[#F0EDE0] overflow-hidden relative">
-                  {domain.id === 'education' && (
+                  {(domain.id === 'education' || domain.id === 'center') && (
                     <img
                       src={domain.image}
                       alt=""
@@ -74,7 +74,7 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
                     src={domain.image}
                     alt={domain.title}
                     className={`relative w-full h-full ${
-                      domain.id === 'education'
+                      domain.id === 'education' || domain.id === 'center'
                         ? 'object-contain object-center'
                         : 'object-cover object-top'
                     } group-hover:scale-105 transition-transform duration-500`}
@@ -124,7 +124,7 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
         <div className="fixed inset-0 z-50 bg-[#1D3C6E]/65 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#9ABDE3] relative">
             <div className="aspect-[16/9] bg-[#F0EDE0] relative overflow-hidden">
-              {selectedDomain.id === 'education' && (
+              {(selectedDomain.id === 'education' || selectedDomain.id === 'center') && (
                 <img
                   src={selectedDomain.image}
                   alt=""
@@ -137,7 +137,7 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
                 src={selectedDomain.image}
                 alt={selectedDomain.title}
                 className={`relative w-full h-full ${
-                  selectedDomain.id === 'education'
+                  selectedDomain.id === 'education' || selectedDomain.id === 'center'
                     ? 'object-contain object-center'
                     : 'object-cover object-top'
                 }`}
