@@ -61,10 +61,23 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
             >
               <div>
                 <div className="aspect-[16/11] bg-[#F0EDE0] overflow-hidden relative">
+                  {domain.id === 'education' && (
+                    <img
+                      src={domain.image}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-40"
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
                   <img
                     src={domain.image}
                     alt={domain.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={`relative w-full h-full ${
+                      domain.id === 'education'
+                        ? 'object-contain object-center'
+                        : 'object-cover object-top'
+                    } group-hover:scale-105 transition-transform duration-500`}
                     referrerPolicy="no-referrer"
                     onError={(e) => {
                       e.currentTarget.src = FOUNDATION_META.localFallbackImage;
@@ -110,11 +123,24 @@ export const ActionDomainsGrid: React.FC<ActionDomainsGridProps> = ({
       {selectedDomain && (
         <div className="fixed inset-0 z-50 bg-[#1D3C6E]/65 backdrop-blur-xs flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl max-w-lg w-full overflow-hidden shadow-2xl border border-[#9ABDE3] relative">
-            <div className="aspect-[16/9] bg-[#F0EDE0] relative">
+            <div className="aspect-[16/9] bg-[#F0EDE0] relative overflow-hidden">
+              {selectedDomain.id === 'education' && (
+                <img
+                  src={selectedDomain.image}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover blur-md scale-110 opacity-40"
+                  referrerPolicy="no-referrer"
+                />
+              )}
               <img
                 src={selectedDomain.image}
                 alt={selectedDomain.title}
-                className="w-full h-full object-cover"
+                className={`relative w-full h-full ${
+                  selectedDomain.id === 'education'
+                    ? 'object-contain object-center'
+                    : 'object-cover object-top'
+                }`}
                 referrerPolicy="no-referrer"
                 onError={(e) => {
                   e.currentTarget.src = FOUNDATION_META.localFallbackImage;

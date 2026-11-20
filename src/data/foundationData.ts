@@ -65,7 +65,7 @@ export const ACTION_DOMAINS = [
     id: "nutrition",
     title: "Nutrition & Feeding",
     description: "Delivering 500+ weekly meals and emergency food hampers to vulnerable households and street children.",
-    image: "/assets/aistudio/0c94d764051b263a253cc377356a49fb_b884add9.jpg",
+    image: "/assets/aistudio/WhatsApp_Image_2026-11-16_at_5.36.49_PM_a0ac73a3.jpeg",
     badgeBg: "bg-[#224EA6]",
     iconName: "Utensils",
     causeTitle: "Weekly Feeding & Food Security Program",
