@@ -59,10 +59,9 @@ export const Hero: React.FC<HeroProps> = ({
       {/* Full-Bleed Photographic Hero Banner */}
       <div className="relative min-h-[560px] lg:min-h-[620px] flex items-center overflow-hidden bg-[#1D3C6E]">
         <img
-          src={FOUNDATION_META.heroImage}
-          alt="Children smiling with Putting a Smile On Them Foundation in Eldoret"
+          src="/assets/aistudio/WhatsApp_Image_2026-11-16_at_5.36.51_PM_c7fd4ad1.jpeg"
+          alt="Community outreach and support in Eldoret with Putting a Smile On Them Foundation"
           className="absolute inset-0 w-full h-full object-cover object-center"
-          referrerPolicy="no-referrer"
           onError={(e) => {
             e.currentTarget.src = FOUNDATION_META.localFallbackImage;
           }}

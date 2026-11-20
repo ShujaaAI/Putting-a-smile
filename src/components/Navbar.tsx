@@ -44,11 +44,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="bg-[#1D3C6E] text-white/95 py-2 px-4 sm:px-6 lg:px-8 text-xs border-b border-white/15">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-1">
-            <span className="flex items-center gap-1.5 font-medium">
-              <Heart className="w-3.5 h-3.5 text-[#FAEB8E] fill-[#C02523] shrink-0" />
-              <span className="truncate">{FOUNDATION_META.announcement}</span>
-            </span>
-            <span className="hidden md:flex items-center gap-1.5 text-white/85">
+            <span className="flex items-center gap-1.5 text-white/90 font-medium">
               <Users className="w-3.5 h-3.5 text-[#689FF1] shrink-0" />
               <span>1,000+ Lives Touched</span>
             </span>
